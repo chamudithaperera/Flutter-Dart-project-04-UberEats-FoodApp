@@ -45,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: InputDecoration(
                   hintText: 'Email',
                   hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5),  // Decrease opacity for placeholder
+                    color: Colors.black.withOpacity(0.2),  // Decrease opacity for placeholder
                   ),
                   filled: true,
                   fillColor: Colors.white,
@@ -61,7 +61,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 decoration: InputDecoration(
                   hintText: 'Password',
                   hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5), // Decrease opacity for placeholder
+                    color: Colors.black.withOpacity(0.2), // Decrease opacity for placeholder
                   ),
                   filled: true,
                   fillColor: Colors.white,
@@ -72,6 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   suffixIcon: IconButton(
                     icon: Icon(
                       _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                      color: Colors.black.withOpacity(0.5),
                     ),
                     onPressed: () {
                       setState(() {
@@ -83,12 +84,17 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 10),
               Align(
-                alignment: Alignment.centerRight,
+                alignment: Alignment.center,
                 child: TextButton(
                   onPressed: () {
                     // Forgot password action
                   },
-                  child: const Text('Forgot password?'),
+                  child: const Text('Forgot password?',
+                  style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),),
                 ),
               ),
               const SizedBox(height: 10),
@@ -100,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   backgroundColor: Colors.black, // Button color
                   padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 ),
-                child: const Text('Login'),
+                child: const Text('Login',style: TextStyle(color: Colors.white),),
               ),
               const SizedBox(height: 10),
               OutlinedButton.icon(
@@ -122,7 +128,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     MaterialPageRoute(builder: (context) => RegisterScreen()),
                   );
                 },
-                child: const Text("Don't have an account? sign up"),
+                child: const Text("Don't have an account? sign up",
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),),
               ),
             ],
           ),
