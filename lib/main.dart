@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'login_screen.dart';  // Importing login screen to link to it
+import 'package:foodapp/homepage.dart';
+// import 'login_screen.dart';  // Importing login screen to link to it
 
 void main() {
   runApp(const MyApp());
@@ -49,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const LoginScreen()),
+        MaterialPageRoute(builder: (context) => HomeScreen()),
       );
     });
   }

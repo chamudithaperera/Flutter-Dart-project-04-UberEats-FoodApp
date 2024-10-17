@@ -31,7 +31,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
               const Text(
                 'Signup',
                 style: TextStyle(
@@ -40,102 +40,202 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   color: Colors.black,
                 ),
               ),
+
               const SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5),  // Decrease opacity for placeholder
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // Shadow slightly below the text field
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                    hintStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.2), fontSize: 13,  // Decrease opacity for placeholder
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
                   ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
+                ),
+              ),
+
+              const SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // Shadow slightly below the text field
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  obscureText: _isPasswordHidden,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    hintStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.2), fontSize: 13  // Decrease opacity for placeholder
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.black.withOpacity(0.5)
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordHidden = !_isPasswordHidden;  // Toggle password visibility
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // Shadow slightly below the text field
+                    ),
+                  ],
+                ),
+                child: TextField(
+                  obscureText: _isConfirmPasswordHidden,
+                  decoration: InputDecoration(
+                    hintText: 'Confirm password',
+                    hintStyle: TextStyle(
+                      color: Colors.black.withOpacity(0.2), fontSize: 13  // Decrease opacity for placeholder
+                    ),
+                    filled: true,
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide.none,
+                    ),
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isConfirmPasswordHidden ? Icons.visibility_off : Icons.visibility,
+                        color: Colors.black.withOpacity(0.5)
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isConfirmPasswordHidden = !_isConfirmPasswordHidden;  // Toggle confirm password visibility
+                        });
+                      },
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // Shadow slightly below the text field
+                    ),
+                  ],
+                ),
+                child: SizedBox(
+                  width: double.infinity, // Full width of the parent container
+                  child: ElevatedButton(
+                    onPressed: () {
+                      // Signup button action
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      padding: EdgeInsets.symmetric(vertical: 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    child: Text(
+                      'Signup',
+                      style: TextStyle(fontSize: 18, color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 15),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: Offset(0, 3), // Shadow slightly below the text field
+                    ),
+                  ],
+                ),
+                child: SizedBox(
+                  width: double.infinity, // Full width of the parent container
+                  child: OutlinedButton.icon(
+                    icon: Image.asset(
+                      'assets/google_icon.png',
+                      width: 24,  // Adjust the icon size if needed
+                    ),  
+                    onPressed: () {
+                      // Google signup action
+                    },
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black, 
+                      backgroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 15), // Padding for vertical symmetry
+                      side: const BorderSide(color: Colors.white), // White border for consistency
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),  // Rounded corners for modern look
+                      ),
+                    ),
+                    label: const Text(
+                      'Signup with Google',
+                      style: TextStyle(fontSize: 13, color: Colors.black), // Text color matches the design
+                    ),
                   ),
                 ),
               ),
               const SizedBox(height: 15),
-              TextField(
-                obscureText: _isPasswordHidden,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5),  // Decrease opacity for placeholder
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _isPasswordHidden ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _isPasswordHidden = !_isPasswordHidden;  // Toggle password visibility
-                      });
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(height: 15),
-              TextField(
-                obscureText: _isConfirmPasswordHidden,
-                decoration: InputDecoration(
-                  hintText: 'Confirm password',
-                  hintStyle: TextStyle(
-                    color: Colors.black.withOpacity(0.5),  // Decrease opacity for placeholder
-                  ),
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
-                  ),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _isConfirmPasswordHidden ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    onPressed: () {
-                      setState(() {
-                        _isConfirmPasswordHidden = !_isConfirmPasswordHidden;  // Toggle confirm password visibility
-                      });
-                    },
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10),
-              ElevatedButton(
-                onPressed: () {
-                  // Signup button action
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.black,
-                  padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                ),
-                child: const Text('Signup'),
-              ),
-              const SizedBox(height: 10),
-              OutlinedButton.icon(
-                icon: Image.asset('assets/google_icon.png', width: 24),  // Google icon
-                onPressed: () {
-                  // Google signup action
-                },
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: Colors.black, backgroundColor: Colors.white,
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                ),
-                label: const Text('Signup with Google'),
-              ),
-              const SizedBox(height: 20),
               TextButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: const Text('Already have an account? Login'),
+                child: const Text('Already have an account? Login', style: TextStyle(color: Colors.black),),
               ),
             ],
           ),
