@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF06C167),
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -41,34 +42,39 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: SingleChildScrollView( // Make the body scrollable
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Good Morning,",
-              style: TextStyle(color: Colors.black54,fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-            Text(
-              "Chamuditha Perera",
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 16),
+      body: Container(
 
-            // Custom SearchBar with Filter Button
-            custom.SearchBar(),
-
-            SizedBox(height: 24),
-
-            // Categories Section
-            CategoriesSection(),
-
-            SizedBox(height: 24),
-
-            // Popular Section
-            PopularSection(), // Ensure this section is scrollable
-          ],
+        color: Color(0xFFE0F7E9),
+        child: SingleChildScrollView(
+           // Make the body scrollable
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Good Morning,",
+                style: TextStyle(color: Colors.black54,fontSize: 15, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                "Chamuditha Perera",
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 16),
+        
+              // Custom SearchBar with Filter Button
+              custom.SearchBar(),
+        
+              SizedBox(height: 24),
+        
+              // Categories Section
+              CategoriesSection(),
+        
+              SizedBox(height: 24),
+        
+              // Popular Section
+              PopularSection(), // Ensure this section is scrollable
+            ],
+          ),
         ),
       )
     );
