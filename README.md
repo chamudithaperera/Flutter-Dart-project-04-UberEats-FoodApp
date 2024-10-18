@@ -1,10 +1,6 @@
-Here’s the updated **GitHub README** with your GitHub username:
-
----
-
 # 🍽️ UberEats Clone - Flutter App
 
-Welcome to the **UberEats Clone mobile app project, built using the **Flutter framework! This app aims to replicate the core features of the popular UberEats platform, offering a modern UI and a smooth user experience.
+Welcome to the UberEats Clone mobile app project, built using the Flutter framework! This app aims to replicate the core features of the popular UberEats platform, offering a modern UI and a smooth user experience.
 
 ## 🚀 Features Completed in Level 1
 
