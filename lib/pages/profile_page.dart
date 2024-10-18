@@ -37,10 +37,9 @@ class _ProfilePageState extends State<ProfilePage> {
             ),
           ],
         ),
-        backgroundColor: Color(0xFF06C167), // Dark Green theme color
+        backgroundColor: Color(0xFF06C167), // Green theme color
       ),
-      body: Container(
-        color: Color(0xFFE0F7E9), // Light Green background color
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

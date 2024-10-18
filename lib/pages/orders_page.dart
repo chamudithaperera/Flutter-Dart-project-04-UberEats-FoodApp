@@ -33,6 +33,7 @@ class OrdersPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xFF06C167),
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -54,63 +55,66 @@ class OrdersPage extends StatelessWidget {
           ],
         ),
       ),
-      body: ListView.builder(
-        itemCount: orders.length,
-        itemBuilder: (context, index) {
-          final order = orders[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-            child: Container(
-              decoration: BoxDecoration(
-                color: Color(0xFF06C167), // Fixed green color
-                borderRadius: BorderRadius.circular(20), // Rounded corners
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 10,
-                    offset: Offset(0, 5), // Shadow effect
-                  ),
-                ],
-              ),
-              child: ExpansionTile(
-                leading: _getStatusIcon(order['status']),
-                title: Text(
-                  'Order ID: ${order['id']}',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                subtitle: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Status: ${order['status']}',
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                    Text(
-                      'Date: ${order['date']} - ${order['time']}',
-                      style: TextStyle(color: Colors.white70),
-                    ),
-                    Text(
-                      'Total: ${order['total']}',
-                      style: TextStyle(color: Colors.white),
+      body: Container(
+        color: Color(0xFFE0F7E9),
+        child: ListView.builder(
+          itemCount: orders.length,
+          itemBuilder: (context, index) {
+            final order = orders[index];
+            return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Color(0xFF06C167), // Fixed green color
+                  borderRadius: BorderRadius.circular(20), // Rounded corners
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 10,
+                      offset: Offset(0, 5), // Shadow effect
                     ),
                   ],
                 ),
-                children: order['items'].map<Widget>((item) {
-                  return ListTile(
-                    tileColor: Colors.white, // White background for items
-                    title: Text(item['name'], style: TextStyle(fontWeight: FontWeight.bold)),
-                    subtitle: Text('Quantity: ${item['quantity']}'),
-                    trailing: Text(item['price']),
-                  );
-                }).toList(),
+                child: ExpansionTile(
+                  leading: _getStatusIcon(order['status']),
+                  title: Text(
+                    'Order ID: ${order['id']}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Status: ${order['status']}',
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      Text(
+                        'Date: ${order['date']} - ${order['time']}',
+                        style: TextStyle(color: Colors.white70),
+                      ),
+                      Text(
+                        'Total: ${order['total']}',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
+                  children: order['items'].map<Widget>((item) {
+                    return ListTile(
+                      tileColor: Colors.white, // White background for items
+                      title: Text(item['name'], style: TextStyle(fontWeight: FontWeight.bold)),
+                      subtitle: Text('Quantity: ${item['quantity']}'),
+                      trailing: Text(item['price']),
+                    );
+                  }).toList(),
+                ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

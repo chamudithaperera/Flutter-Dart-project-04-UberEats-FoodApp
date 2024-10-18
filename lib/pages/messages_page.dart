@@ -26,7 +26,7 @@ class _MessagesPageState extends State<MessagesPage> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // backgroundColor: Color(0xFF06C167), // Use green theme color
+        backgroundColor: Color(0xFF06C167), // Use green theme color
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -56,12 +56,15 @@ class _MessagesPageState extends State<MessagesPage> with SingleTickerProviderSt
           ],
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          ChatList(tabController: _tabController),  // Chat List Tab
-          Chat(),                                  // Chat Tab
-        ],
+      body: Container(
+        color: Color(0xFFE0F7E9),
+        child: TabBarView(
+          controller: _tabController,
+          children: [
+            ChatList(tabController: _tabController),  // Chat List Tab
+            Chat(),                                  // Chat Tab
+          ],
+        ),
       ),
     );
   }
