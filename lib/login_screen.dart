@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodapp/homepage.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -151,8 +152,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   width: double.infinity, // Full width of the parent container
                   child: ElevatedButton(
                     onPressed: () {
-                      // Login button action
-                    },
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                  );
+                },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
                       padding: const EdgeInsets.symmetric(vertical: 15),

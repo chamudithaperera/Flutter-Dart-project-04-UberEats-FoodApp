@@ -14,6 +14,18 @@ class PopularSection extends StatelessWidget {
       'rating': 4.7,
       'restaurants': 13
     },
+    {
+      'name': 'Shrimp Pasta',
+      'image': 'assets/shrimp_pasta.png',
+      'rating': 4.7,
+      'restaurants': 13
+    },
+    {
+      'name': 'Shrimp Pasta',
+      'image': 'assets/shrimp_pasta.png',
+      'rating': 4.7,
+      'restaurants': 13
+    },
   ];
 
   @override
@@ -23,19 +35,19 @@ class PopularSection extends StatelessWidget {
       children: [
         // Title and More Button
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
                 'Popular',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               TextButton(
                 onPressed: () {
                   // Action to see more popular items
                 },
-                child: Text('More'),
+                child: Text('More',style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 0, 0, 0) ),),
               ),
             ],
           ),

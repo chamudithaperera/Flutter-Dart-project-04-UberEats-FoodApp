@@ -4,7 +4,7 @@ import '/widgets/categories_section.dart'; // Import Categories Section
 import '/widgets/popular_section.dart'; // Import Popular Section
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({super.key});
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -47,8 +47,12 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Good Morning,\nChamuditha Perera",
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              "Good Morning,",
+              style: TextStyle(color: Colors.black54,fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "Chamuditha Perera",
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 16),
 
@@ -67,31 +71,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       )
-
-
-      // bottomNavigationBar: BottomNavigationBar(
-      //   currentIndex: _selectedIndex,
-      //   onTap: _onItemTapped,
-      //   selectedItemColor: Color(0xFF06C167),
-      //   items: [
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.home),
-      //       label: 'Home',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.shopping_bag),
-      //       label: 'Orders',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.message),
-      //       label: 'Messages',
-      //     ),
-      //     BottomNavigationBarItem(
-      //       icon: Icon(Icons.person),
-      //       label: 'Profile',
-      //     ),
-      //   ],
-      // ),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:foodapp/homepage.dart';
-// import 'login_screen.dart';  // Importing login screen to link to it
+// import 'package:foodapp/homepage.dart';
+import 'login_screen.dart';  // Importing login screen to link to it
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: SplashScreen(), // Start with splash screen
     );
@@ -50,7 +50,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
+        MaterialPageRoute(builder: (context) => LoginScreen()),
       );
     });
   }
