@@ -53,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -85,7 +85,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -184,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -221,7 +221,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()),
+                    MaterialPageRoute(builder: (context) => const RegisterScreen()),
                   );
                 },
                 child: const Text("Don't have an account? sign up",

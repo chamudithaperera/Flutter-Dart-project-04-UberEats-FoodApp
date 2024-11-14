@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ChangePasswordDialog extends StatelessWidget {
+  const ChangePasswordDialog({super.key});
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Change Password'),
-      content: Column(
+      title: const Text('Change Password'),
+      content: const Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           TextField(
@@ -38,14 +40,14 @@ class ChangePasswordDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: () {
             // Handle password change logic
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Change Password'),
+          child: const Text('Change Password'),
         ),
       ],
     );

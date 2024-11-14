@@ -1,71 +1,60 @@
 import 'package:flutter/material.dart';
 
 class SearchBar extends StatelessWidget {
-  const SearchBar({Key? key}) : super(key: key);
+  const SearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Row(
-        children: [
-          // Search bar
-          Expanded(
-            child: Container(
-              height: 50, // Adjust height here
-              decoration: BoxDecoration(
-                color: Colors.grey.shade200, // Background color for search bar
-                borderRadius: BorderRadius.circular(5), // Rounded corners
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.3), // Shadow color
-                    spreadRadius: 2,
-                    blurRadius: 5,
-                    offset: Offset(0, 3), // Shadow position
-                  ),
-                ],
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search for lunch',
-                  hintStyle: TextStyle(
-                    color: Colors.grey.shade600, // Hint text color
-                  ),
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: Colors.grey.shade600, // Icon color
-                  ),
-                  border: InputBorder.none, // Remove the border
-                  contentPadding: EdgeInsets.symmetric(vertical: 15), // Adjust padding
-                ),
-                style: TextStyle(color: Colors.black), // Text color
-              ),
-            ),
-          ),
-          SizedBox(width: 10), // Space between search bar and filter button
-          // Filter button
-          Container(
-            height: 50, // Adjust height here
-            width: 50, // Adjust width to make it square
+    return Row(
+      children: [
+        Expanded(
+          child: Container(
+            height: 50,
             decoration: BoxDecoration(
-              color: Colors.grey.shade200, // Background color for filter button
-              borderRadius: BorderRadius.circular(10), // Rounded corners
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3), // Shadow color
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: Offset(0, 3), // Shadow position
-                ),
-              ],
+              color: Colors.grey[100],
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: Colors.grey[300]!),
             ),
-            child: Icon(
-              Icons.tune, // Filter icon
-              color: Colors.grey.shade600, // Icon color
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Search for lunch',
+                hintStyle: TextStyle(
+                  color: Colors.grey[500],
+                  fontSize: 14,
+                ),
+                prefixIcon: const Icon(
+                  Icons.search,
+                  color: Color(0xFF06C167),
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(vertical: 15),
+              ),
+              style: const TextStyle(color: Colors.black87),
             ),
           ),
-        ],
-      ),
+        ),
+        const SizedBox(width: 12),
+        Container(
+          height: 50,
+          width: 50,
+          decoration: BoxDecoration(
+            color: const Color(0xFF06C167),
+            borderRadius: BorderRadius.circular(12),
+            boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF06C167).withOpacity(0.3),
+                spreadRadius: 0,
+                blurRadius: 6,
+                offset: const Offset(0, 3),
+              ),
+            ],
+          ),
+          child: const Icon(
+            Icons.tune,
+            color: Colors.white,
+          ),
+        ),
+      ],
     );
   }
 }

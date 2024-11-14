@@ -1,7 +1,94 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geolocator/geolocator.dart';
+import 'custom_drawer.dart';
+import 'location_service.dart';
 
-class OrdersPage extends StatelessWidget {
-  // Sample order data
+class DeliveryTrackingMap extends StatefulWidget {
+  final String orderId;
+  
+  const DeliveryTrackingMap({Key? key, required this.orderId}) : super(key: key);
+
+  @override
+  State<DeliveryTrackingMap> createState() => _DeliveryTrackingMapState();
+}
+
+class _DeliveryTrackingMapState extends State<DeliveryTrackingMap> {
+  GoogleMapController? mapController;
+  Position? currentPosition;
+  final LatLng deliveryGuyPosition = const LatLng(6.5874, 79.9619);
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    try {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+      }
+      
+      if (permission == LocationPermission.denied) {
+        return;
+      }
+
+      Position position = await Geolocator.getCurrentPosition();
+      setState(() {
+        currentPosition = position;
+      });
+    } catch (e) {
+      print("Error getting location: $e");
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Tracking Order ${widget.orderId}'),
+        backgroundColor: const Color(0xFF06C167),
+      ),
+      body: currentPosition == null
+          ? const Center(child: CircularProgressIndicator())
+          : GoogleMap(
+              initialCameraPosition: CameraPosition(
+                target: LatLng(currentPosition!.latitude, currentPosition!.longitude),
+                zoom: 13,
+              ),
+              markers: {
+                Marker(
+                  markerId: const MarkerId('currentLocation'),
+                  position: LatLng(currentPosition!.latitude, currentPosition!.longitude),
+                  infoWindow: const InfoWindow(title: 'Your Location'),
+                ),
+                Marker(
+                  markerId: const MarkerId('deliveryGuy'),
+                  position: deliveryGuyPosition,
+                  infoWindow: const InfoWindow(title: 'Delivery Partner'),
+                  icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+                ),
+              },
+              onMapCreated: (GoogleMapController controller) {
+                mapController = controller;
+              },
+            ),
+    );
+  }
+}
+
+class OrdersPage extends StatefulWidget {
+  const OrdersPage({super.key});
+
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
+  final LocationService _locationService = LocationService();
   final List<Map<String, dynamic>> orders = [
     {
       'id': 'OD001',
@@ -30,109 +117,181 @@ class OrdersPage extends StatelessWidget {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _locationService.getCurrentLocation();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF5F5F5),
       appBar: AppBar(
-        backgroundColor: Color(0xFF06C167),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            // Sidebar menu action
-          },
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         title: Row(
           children: [
-            Icon(Icons.location_on),
-            SizedBox(width: 5),
-            Text(
-              'Western Province, Kalutara',
-              style: TextStyle(fontSize: 13),
-            ), // Location text
-            Spacer(),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/profile_image.png'), // Profile image
+            const Icon(Icons.location_on),
+            const SizedBox(width: 5),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: _locationService,
+                builder: (context, child) {
+                  return Text(
+                    _locationService.currentAddress,
+                    style: const TextStyle(fontSize: 13),
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
+              ),
+            ),
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/profile_image.png'),
             ),
           ],
         ),
+        backgroundColor: const Color(0xFF06C167),
       ),
-      body: Container(
-        color: Color(0xFFE0F7E9),
-        child: ListView.builder(
-          itemCount: orders.length,
-          itemBuilder: (context, index) {
-            final order = orders[index];
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: Color(0xFF06C167), // Fixed green color
-                  borderRadius: BorderRadius.circular(20), // Rounded corners
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black12,
-                      blurRadius: 10,
-                      offset: Offset(0, 5), // Shadow effect
-                    ),
-                  ],
-                ),
-                child: ExpansionTile(
-                  leading: _getStatusIcon(order['status']),
-                  title: Text(
-                    'Order ID: ${order['id']}',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
+      drawer: const CustomDrawer(),
+      body: ListView.builder(
+        itemCount: orders.length,
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (context, index) {
+          final order = orders[index];
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 16),
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.05),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Status: ${order['status']}',
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      Text(
-                        'Date: ${order['date']} - ${order['time']}',
-                        style: TextStyle(color: Colors.white70),
-                      ),
-                      Text(
-                        'Total: ${order['total']}',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  children: order['items'].map<Widget>((item) {
-                    return ListTile(
-                      tileColor: Colors.white, // White background for items
-                      title: Text(item['name'], style: TextStyle(fontWeight: FontWeight.bold)),
-                      subtitle: Text('Quantity: ${item['quantity']}'),
-                      trailing: Text(item['price']),
-                    );
-                  }).toList(),
-                ),
+                ],
               ),
-            );
-          },
-        ),
+              child: Column(
+                children: [
+                  ExpansionTile(
+                    leading: _getStatusIcon(order['status']),
+                    title: Text(
+                      'Order ID: ${order['id']}',
+                      style: GoogleFonts.roboto(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    subtitle: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Status: ${order['status']}',
+                          style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        Text(
+                          'Date: ${order['date']} - ${order['time']}',
+                          style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        Text(
+                          'Total: ${order['total']}',
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ],
+                    ),
+                    children: order['items'].map<Widget>((item) {
+                      return ListTile(
+                        tileColor: const Color(0xFFF5F5F5),
+                        title: Text(
+                          item['name'],
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'Quantity: ${item['quantity']}',
+                          style: GoogleFonts.roboto(
+                            fontSize: 14,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                        trailing: Text(
+                          item['price'],
+                          style: GoogleFonts.roboto(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  if (order['status'] == 'In Progress')
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 16, left: 16, right: 16),
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => DeliveryTrackingMap(
+                                  orderId: order['id'],
+                                ),
+                              ),
+                            );
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFF06C167),
+                            foregroundColor: Colors.white,
+                            padding: const EdgeInsets.symmetric(vertical: 12),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                          child: const Text(
+                            'Track Order',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }
 
-  // Function to get an icon based on the status of the order
   Widget _getStatusIcon(String status) {
     if (status == 'Delivered') {
-      return Icon(Icons.check_circle, color: Colors.white);
+      return const Icon(Icons.check_circle, color: Color(0xFF006400));
     } else if (status == 'In Progress') {
-      return Icon(Icons.local_shipping, color: Colors.white);
+      return const Icon(Icons.local_shipping, color: Color(0xFFFF8C00));
     } else {
-      return Icon(Icons.cancel, color: Colors.white);
+      return const Icon(Icons.cancel, color: Colors.red);
     }
   }
-}
-
-void main() {
-  runApp(MaterialApp(
-    home: OrdersPage(),
-  ));
 }

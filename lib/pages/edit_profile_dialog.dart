@@ -5,7 +5,7 @@ class EditProfileDialog extends StatelessWidget {
   final String currentValue;
   final Function(String) onSave;
 
-  EditProfileDialog({required this.field, required this.currentValue, required this.onSave});
+  const EditProfileDialog({super.key, required this.field, required this.currentValue, required this.onSave});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class EditProfileDialog extends StatelessWidget {
         controller: controller,
         decoration: InputDecoration(
           labelText: 'Enter new $field',
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
         ),
       ),
       actions: [
@@ -25,14 +25,14 @@ class EditProfileDialog extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Cancel'),
+          child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: () {
             onSave(controller.text);
             Navigator.of(context).pop(); // Close the dialog
           },
-          child: Text('Save'),
+          child: const Text('Save'),
         ),
       ],
     );

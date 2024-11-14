@@ -1,4 +1,7 @@
+
 import 'package:flutter/material.dart';
+import 'package:foodapp/pages/custom_drawer.dart';
+import 'package:foodapp/pages/location_service.dart';
 import 'chat_list.dart';
 import 'chat.dart';
 
@@ -8,6 +11,7 @@ class MessagesPage extends StatefulWidget {
 }
 
 class _MessagesPageState extends State<MessagesPage> with SingleTickerProviderStateMixin {
+  final LocationService _locationService = LocationService();
   late TabController _tabController;
 
   @override
@@ -25,46 +29,44 @@ class _MessagesPageState extends State<MessagesPage> with SingleTickerProviderSt
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        backgroundColor: Color(0xFF06C167), // Use green theme color
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            // Sidebar menu action
-          },
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         title: Row(
           children: [
-            Icon(Icons.location_on, color: Colors.black),
-            SizedBox(width: 5),
-            Text(
-              'Western Province, Kalutara',
-              style: TextStyle(fontSize: 13, color: Colors.black),
-            ), // Location text
-            Spacer(),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/profile_image.png'), // Profile image
+            const Icon(Icons.location_on),
+            const SizedBox(width: 5),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: _locationService,
+                builder: (context, child) {
+                  return Text(
+                    _locationService.currentAddress,
+                    style: const TextStyle(fontSize: 13),
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
+              ),
+            ),
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/profile_image.png'),
             ),
           ],
         ),
-        bottom: TabBar(
-          controller: _tabController,
-          indicatorColor: Colors.black,
-          tabs: [
-            Tab(icon: Icon(Icons.chat, color: Colors.black), text: 'Chat List'),
-            Tab(icon: Icon(Icons.message, color: Colors.black), text: 'Chat'),
-          ],
-        ),
+        backgroundColor: const Color(0xFF06C167),
       ),
-      body: Container(
-        color: Color(0xFFE0F7E9),
-        child: TabBarView(
-          controller: _tabController,
-          children: [
-            ChatList(tabController: _tabController),  // Chat List Tab
-            Chat(),                                  // Chat Tab
-          ],
-        ),
+      drawer: const CustomDrawer(),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          ChatList(tabController: _tabController),
+          Chat(tabController: _tabController),  // Fixed: Added required tabController parameter
+        ],
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import '/widgets/search_bar.dart' as custom; // Custom SearchBar
-import '/widgets/categories_section.dart'; // Import Categories Section
-import '/widgets/popular_section.dart'; // Import Popular Section
+import 'package:foodapp/pages/custom_drawer.dart';
+import '/widgets/search_bar.dart' as custom;
+import '/widgets/categories_section.dart';
+import '/widgets/popular_section.dart';
+import 'location_service.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,72 +13,95 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-// Track the selected index for bottom navigation
-
-  // Method to handle bottom navigation tap
-  void _onItemTapped(int index) {
-    setState(() {
-    });
-  }
+  final LocationService _locationService = LocationService();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        backgroundColor: Color(0xFF06C167),
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {
-            // Sidebar menu action
-          },
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
         ),
         title: Row(
           children: [
-            Icon(Icons.location_on),
-            SizedBox(width: 5),
-            Text('Western Province, Kalutara', style: TextStyle(fontSize: 13),), // Update location text accordingly
-            Spacer(),
-            CircleAvatar(
-              backgroundImage: AssetImage('assets/profile_image.png'), // Profile image
+            const Icon(Icons.location_on),
+            const SizedBox(width: 5),
+            Expanded(
+              child: ListenableBuilder(
+                listenable: _locationService,
+                builder: (context, child) {
+                  return Text(
+                    _locationService.currentAddress,
+                    style: const TextStyle(fontSize: 13),
+                    overflow: TextOverflow.ellipsis,
+                  );
+                },
+              ),
+            ),
+            const CircleAvatar(
+              backgroundImage: AssetImage('assets/profile_image.png'),
             ),
           ],
         ),
+        backgroundColor: const Color(0xFF06C167),
       ),
+      drawer: const CustomDrawer(),
       body: Container(
-
-        color: Color(0xFFE0F7E9),
+        color: Colors.grey[50],
         child: SingleChildScrollView(
-           // Make the body scrollable
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Good Morning,",
-                style: TextStyle(color: Colors.black54,fontSize: 15, fontWeight: FontWeight.bold),
+              Container(
+                padding: EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.05),
+                      blurRadius: 10,
+                      offset: Offset(0, 4),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Good Morning,",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                        fontSize: 15,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                    Text(
+                      "Chamuditha Perera",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    custom.SearchBar(),
+                  ],
+                ),
               ),
-              Text(
-                "Chamuditha Perera",
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 16),
-        
-              // Custom SearchBar with Filter Button
-              custom.SearchBar(),
-        
               SizedBox(height: 24),
-        
-              // Categories Section
               CategoriesSection(),
-        
               SizedBox(height: 24),
-        
-              // Popular Section
-              PopularSection(), // Ensure this section is scrollable
+              PopularSection(),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

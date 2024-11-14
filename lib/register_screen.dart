@@ -51,7 +51,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -81,7 +81,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -123,7 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -165,7 +165,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
@@ -177,12 +177,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.black,
-                      padding: EdgeInsets.symmetric(vertical: 15),
+                      padding: const EdgeInsets.symmetric(vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Signup',
                       style: TextStyle(fontSize: 18, color: Colors.white),
                     ),
@@ -200,7 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       color: const Color.fromARGB(255, 70, 93, 74).withOpacity(0.5), // Shadow with opacity
                       spreadRadius: 1,
                       blurRadius: 5,
-                      offset: Offset(0, 3), // Shadow slightly below the text field
+                      offset: const Offset(0, 3), // Shadow slightly below the text field
                     ),
                   ],
                 ),
