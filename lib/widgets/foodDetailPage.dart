@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'foodOrderPayment.dart';
+
 class FoodDetailPage extends StatelessWidget {
   const FoodDetailPage({super.key});
 
@@ -252,16 +254,24 @@ class FoodDetailPage extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
+                    children: [
+                      TextButton(
+                child: const Text(
                         'Check out',
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 8),
-                      Icon(Icons.shopping_basket_outlined, size: 20),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => PaymentPage()),
+                  );
+                },
+              ),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.shopping_basket_outlined, size: 20),
                     ],
                   ),
                 ),

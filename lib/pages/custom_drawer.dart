@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'profile_page.dart';
+
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({super.key});
 
@@ -103,7 +105,10 @@ class CustomDrawer extends StatelessWidget {
               style: GoogleFonts.roboto(fontSize: 16),
             ),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(
+                context,
+                MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
               // Navigate to settings
             },
           ),
