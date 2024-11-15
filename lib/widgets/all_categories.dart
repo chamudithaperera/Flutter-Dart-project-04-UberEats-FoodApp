@@ -5,13 +5,15 @@ import 'dinner_items.dart';
 import 'other_items.dart';
 
 class AllCategoriesPage extends StatefulWidget {
+  const AllCategoriesPage({super.key});
+
   @override
   _AllCategoriesPageState createState() => _AllCategoriesPageState();
 }
 
 class _AllCategoriesPageState extends State<AllCategoriesPage> with SingleTickerProviderStateMixin {
   late TabController _tabController;
-  final Color primaryColor = Color(0xFF06C167);
+  final Color primaryColor = const Color(0xFF06C167);
 
   @override
   void initState() {
@@ -112,7 +114,7 @@ class _AllCategoriesPageState extends State<AllCategoriesPage> with SingleTicker
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () {
             Navigator.pop(context);
           },

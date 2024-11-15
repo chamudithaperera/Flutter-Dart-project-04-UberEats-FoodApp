@@ -14,10 +14,10 @@ class FoodDetailPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios, color: Colors.black87),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Row(
+        title: const Row(
           children: [
-            const Icon(Icons.location_on, color: Colors.black87, size: 20),
-            const SizedBox(width: 8),
+            Icon(Icons.location_on, color: Colors.black87, size: 20),
+            SizedBox(width: 8),
             Expanded(
               child: Text(
                 'Western province, Kalutara',
@@ -215,12 +215,12 @@ class FoodDetailPage extends StatelessWidget {
           ),
           child: Row(
             children: [
-              Expanded(
+              const Expanded(
                 flex: 2,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Price',
                       style: TextStyle(
@@ -266,7 +266,7 @@ class FoodDetailPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => PaymentPage()),
+                    MaterialPageRoute(builder: (context) => const PaymentPage()),
                   );
                 },
               ),

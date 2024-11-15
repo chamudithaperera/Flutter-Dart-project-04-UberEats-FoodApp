@@ -8,7 +8,7 @@ import 'location_service.dart';
 class DeliveryTrackingMap extends StatefulWidget {
   final String orderId;
   
-  const DeliveryTrackingMap({Key? key, required this.orderId}) : super(key: key);
+  const DeliveryTrackingMap({super.key, required this.orderId});
 
   @override
   State<DeliveryTrackingMap> createState() => _DeliveryTrackingMapState();

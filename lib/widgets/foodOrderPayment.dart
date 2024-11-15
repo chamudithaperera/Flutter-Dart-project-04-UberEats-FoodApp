@@ -91,9 +91,9 @@ class _PaymentPageState extends State<PaymentPage> {
                   const SizedBox(height: 16),
                   const Divider(),
                   const SizedBox(height: 16),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
+                    children: [
                       Text(
                         'Total',
                         style: TextStyle(
@@ -409,14 +409,14 @@ class DeliveryTrackingPage extends StatelessWidget {
                       color: Colors.grey[100],
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: Row(
+                    child: const Row(
                       children: [
-                        const Icon(Icons.location_on, color: Color(0xFF06C167)),
-                        const SizedBox(width: 16),
+                        Icon(Icons.location_on, color: Color(0xFF06C167)),
+                        SizedBox(width: 16),
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
                                 'Delivery Address',
                                 style: TextStyle(

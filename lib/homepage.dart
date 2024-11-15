@@ -17,9 +17,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final List<Widget> _pages = [
     const HomePage(),
-    OrdersPage(),
-    MessagesPage(),
-    ProfilePage(),
+    const OrdersPage(),
+    const MessagesPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -109,7 +109,7 @@ void main() {
         primarySwatch: Colors.green,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      home: HomeScreen(),
+      home: const HomeScreen(),
     ),
   );
 }

@@ -18,7 +18,7 @@ class _ProfilePageState extends State<ProfilePage> {
   final LocationService _locationService = LocationService();
   
   String userName = 'Your Name';
-  String userEmail = 'YourName@example.com';
+  String userEmail = 'yourname@example.com';
   String userLocation = 'Western Province, Kalutara';
   String userContact = '+94 123 456 789';
   File? _profileImage;
@@ -450,7 +450,7 @@ class _ProfilePageState extends State<ProfilePage> {
     showDialog(
       context: context,
       builder: (context) {
-        return ChangePasswordDialog();
+        return const ChangePasswordDialog();
       },
     );
   }

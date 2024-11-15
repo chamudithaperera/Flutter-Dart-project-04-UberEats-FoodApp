@@ -66,7 +66,7 @@ class PopularSection extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AllPopularItems()),
+                    MaterialPageRoute(builder: (context) => const AllPopularItems()),
                   );
                 },
                 child: const Text(
@@ -112,7 +112,7 @@ class PopularSection extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => FoodDetailPage()),
+                            MaterialPageRoute(builder: (context) => const FoodDetailPage()),
                           );
                         },
                         child: Stack(

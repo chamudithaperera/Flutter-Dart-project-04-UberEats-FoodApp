@@ -25,7 +25,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  'John Doe',
+                  'Your Name',
                   style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontSize: 18,
@@ -33,7 +33,7 @@ class CustomDrawer extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  'john.doe@example.com',
+                  'yourname@example.com',
                   style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontSize: 14,

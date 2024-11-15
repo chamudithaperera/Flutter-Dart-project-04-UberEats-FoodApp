@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(16),
@@ -66,7 +66,7 @@ class _HomePageState extends State<HomePage> {
                     BoxShadow(
                       color: Colors.black.withOpacity(0.05),
                       blurRadius: 10,
-                      offset: Offset(0, 4),
+                      offset: const Offset(0, 4),
                     ),
                   ],
                 ),
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Chamuditha Perera",
                       style: TextStyle(
                         fontSize: 24,
@@ -89,14 +89,14 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black87,
                       ),
                     ),
-                    SizedBox(height: 16),
-                    custom.SearchBar(),
+                    const SizedBox(height: 16),
+                    const custom.SearchBar(),
                   ],
                 ),
               ),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               CategoriesSection(),
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               PopularSection(),
             ],
           ),

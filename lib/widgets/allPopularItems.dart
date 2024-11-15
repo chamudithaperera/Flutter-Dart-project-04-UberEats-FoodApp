@@ -2,14 +2,16 @@ import 'package:flutter/material.dart';
 import 'popular_items_data.dart';  // Import the data
 
 class AllPopularItems extends StatelessWidget {
+  const AllPopularItems({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Color(0xFF06C167),
-        hintColor: Color(0xFF06C167),
-        appBarTheme: AppBarTheme(
+        primaryColor: const Color(0xFF06C167),
+        hintColor: const Color(0xFF06C167),
+        appBarTheme: const AppBarTheme(
           color: Color(0xFF06C167),
           iconTheme: IconThemeData(color: Colors.white),
           titleTextStyle: TextStyle(
@@ -19,7 +21,7 @@ class AllPopularItems extends StatelessWidget {
           ),
         ),
         textTheme: TextTheme(
-          bodyLarge: TextStyle(
+          bodyLarge: const TextStyle(
             color: Colors.black87,
             fontSize: 14,
             fontWeight: FontWeight.normal,
@@ -28,14 +30,14 @@ class AllPopularItems extends StatelessWidget {
             color: Colors.grey[600],
             fontSize: 12,
           ),
-          titleLarge: TextStyle(
+          titleLarge: const TextStyle(
             color: Colors.black87,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
         buttonTheme: ButtonThemeData(
-          buttonColor: Color(0xFF06C167),
+          buttonColor: const Color(0xFF06C167),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -66,7 +68,7 @@ class AllPopularItems extends StatelessWidget {
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.2),
                         blurRadius: 8,
-                        offset: Offset(0, 4),
+                        offset: const Offset(0, 4),
                       ),
                     ],
                   ),

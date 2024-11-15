@@ -53,7 +53,7 @@ class CategoriesSection extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => AllCategoriesPage()),
+                    MaterialPageRoute(builder: (context) => const AllCategoriesPage()),
                   );
                 },
               ),
